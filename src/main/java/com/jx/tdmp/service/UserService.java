@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserService extends IService<User> {
     List<User> listUsers();
-    User getUser(String id);
+    User getUserById(String id);
     User createUser(User user);
     User updateUser(String id);
     boolean deleteUser(String id);

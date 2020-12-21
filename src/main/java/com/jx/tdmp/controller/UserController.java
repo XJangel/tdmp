@@ -56,7 +56,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public User getUser(@PathVariable("id") String id) {
-        return userService.getUser(id);
+        return userService.getUserById(id);
 
     }
 
