@@ -62,8 +62,19 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+<!--        log-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
 
-<!--      k8s client-java -->
+
+        <!--      k8s client-java -->
         <dependency>
             <groupId>io.kubernetes</groupId>
             <artifactId>client-java</artifactId>
