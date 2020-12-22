@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,7 +25,9 @@ public class GlobalExceptionHandler {
     // 捕捉shiro的异常
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(ShiroException.class)
+    @ResponseBody
     public ResponseResult handle401(ShiroException e) {
+
         return new ResponseResult(ResultCode.fail);
     }
     /**
@@ -32,6 +35,7 @@ public class GlobalExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = IllegalArgumentException.class)
+    @ResponseBody
     public ResponseResult handler(IllegalArgumentException e) throws IOException {
         log.error("Assert异常:-------------->{}",e.getMessage());
         return new ResponseResult(ResultCode.fail);
@@ -41,6 +45,7 @@ public class GlobalExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseBody
     public ResponseResult handler(MethodArgumentNotValidException e) throws IOException {
         log.error("运行时异常:-------------->",e);
         BindingResult bindingResult = e.getBindingResult();
@@ -50,6 +55,7 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
+    @ResponseBody
     public ResponseResult handler(RuntimeException e) throws IOException {
         log.error("运行时异常:-------------->",e);
         return new ResponseResult(ResultCode.fail);

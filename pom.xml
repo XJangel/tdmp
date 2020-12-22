@@ -13,7 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>tdmp</name>
     <description>a trusted data management platform</description>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>

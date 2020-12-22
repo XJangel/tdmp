@@ -19,23 +19,28 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class AccountController {
+
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
     UserService userService;
     /**
-     * 默认账号密码：markerhub / 111111
+     * 默认账号密码：suki / 123456
      *
      */
     @CrossOrigin
     @PostMapping("/login")
+    @ResponseBody
     public ResponseResult login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
-        User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
+        User user = userService.getOne(new QueryWrapper<User>().eq("user_name", loginDto.getUsername()));
         Assert.notNull(user, "用户不存在");
-        if(!user.getPasswd().equals(SecureUtil.md5(loginDto.getPassword()))) {
-            //TODO:ResultCode定义
+        if(!user.getPasswd().equals(loginDto.getPassword())){
             return new ResponseResult(ResultCode.fail);
         }
+//        if(!user.getPasswd().equals(SecureUtil.md5(loginDto.getPassword()))) {
+//            //TODO:ResultCode定义
+//            return new ResponseResult(ResultCode.fail);
+//        }
         String jwt = jwtUtils.generateToken(Long.parseLong(user.getUserId()));
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
@@ -54,6 +59,7 @@ public class AccountController {
     // 退出
     @GetMapping("/logout")
     @RequiresAuthentication
+    @ResponseBody
     public ResponseResult logout() {
         SecurityUtils.getSubject().logout();
         // TODO ResultCode

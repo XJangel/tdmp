@@ -1,10 +1,12 @@
 package com.jx.tdmp.common.lang;
 
 import com.jx.tdmp.constant.ResultCode;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
+@Data
 public class ResponseResult<T> implements Serializable {
     private boolean success;//是否操作成功
     private HttpStatus code;//操作状态码，rest风格

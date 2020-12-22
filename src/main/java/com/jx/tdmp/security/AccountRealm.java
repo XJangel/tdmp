@@ -10,6 +10,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +23,35 @@ public class AccountRealm extends AuthorizingRealm {
     JwtUtils jwtUtils;
     @Autowired
     UserService userService;
+
     @Override
     public boolean supports(AuthenticationToken token) {
-        return token instanceof JwtToken;
+        return token != null && token instanceof JwtToken;
     }
+
+    // TODO: RBAC的实现
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        User user = (User) principals.getPrimaryPrincipal();
+        // sysRole是角色信息，待定义
+//        for(SysRole role:user.getRoleList()){
+//            authorizationInfo.addRole(role.getRole());
+//            for(SysPermission p:role.getPermissions()){
+//                authorizationInfo.addStringPermission(p.getPermission());
+//            }
+//        }
+        return authorizationInfo;
     }
+
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         JwtToken jwt = (JwtToken) token;
         log.info("jwt----------------->{}", jwt);
         String userId = jwtUtils.getClaimByToken((String) jwt.getPrincipal()).getSubject();
-        User user = userService.getById(Long.parseLong(userId));
-        if(user == null) {
+        User user = userService.getUserById(userId);
+        if (user == null) {
 //            暂时没定义此Exception
 //            throw new UnknownAccountException("账户不存在！");
         }
