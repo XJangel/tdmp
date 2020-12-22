@@ -7,6 +7,10 @@ public enum ResultCode {
     ADD_ITEM_failure(false, HttpStatus.CREATED,"添加失败！"),
 
     NAME_CANNOT_BE_NULL(false, HttpStatus.BAD_REQUEST, "名称不能为空"),
+
+    fail(false,HttpStatus.FORBIDDEN,""),
+
+    succeed(true, HttpStatus.ACCEPTED,""),
     ;
     //操作是否成功
     boolean success;

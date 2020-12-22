@@ -1,11 +1,12 @@
 package com.jx.tdmp.controller;
 
+import com.jx.tdmp.common.lang.ResponseResult;
 import com.jx.tdmp.constant.ResultCode;
-import com.jx.tdmp.controller.result.Response;
 import com.jx.tdmp.entity.User;
 import com.jx.tdmp.exception.UserException;
 import com.jx.tdmp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -33,21 +34,22 @@ public class UserController {
     @Resource(name="userServiceImpl")
     private UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
+    @PostMapping
     @ResponseBody
-    public Response<User> createUser(@RequestBody User user) {
+    public ResponseResult<User> createUser(@Validated @RequestBody User user) {
         if (user.getUserName() == null) {
             throw new UserException(ResultCode.NAME_CANNOT_BE_NULL);
         }
         boolean response = userService.save(user);
+
         if (response) {
-            return new Response<>(ResultCode.ADD_ITEM_SUCCESS, user);
+            return new ResponseResult<>(ResultCode.ADD_ITEM_SUCCESS, user);
         } else {
-            return new Response<>(ResultCode.ADD_ITEM_failure, user);
+            return new ResponseResult<>(ResultCode.ADD_ITEM_failure, user);
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<User> listUsers() {
         return userService.listUsers();
