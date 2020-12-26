@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ *  NetworkService接口
  * </p>
  *
  * @author Jiejie Xu
@@ -17,7 +17,7 @@ import java.util.List;
 public interface NetworkService extends IService<Network> {
 
     List<Network> listNetworks();
-    Network getNetworkrById(String id);
+    Network getNetworkById(String id);
     Network createNetwork(Network network);
     Network updateNetwork(Network network);
     boolean deleteNetwork(String id);
