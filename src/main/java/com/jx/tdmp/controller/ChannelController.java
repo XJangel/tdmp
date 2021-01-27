@@ -1,14 +1,13 @@
 package com.jx.tdmp.controller;
 
 import com.jx.tdmp.common.lang.ResponseResult;
-import com.jx.tdmp.entity.Channel;
-import com.jx.tdmp.service.ChannelService;
+import com.jx.tdmp.entity.IntermediateChannel;
+import com.jx.tdmp.service.Interface.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/channels")
@@ -18,17 +17,43 @@ public class ChannelController {
     private ChannelService channelService;
 
     @RequestMapping
-    public ResponseResult<Channel> listChannels(){
+    @ResponseBody
+    public ResponseResult<IntermediateChannel> listChannels() {
         return null;
     }
 
     @PostMapping
-    public ResponseResult<Channel> createChannel(){
+    @ResponseBody
+    public ResponseResult<IntermediateChannel> createChannel() {
         return null;
     }
 
+    /*
+    genesis block->
+    channel configuration:
+    - organizations
+    - channel access policies
+    - block batch size
+    - batch timeout
+    - channel restrictions
+    - channel creation policy
+
+     */
     @PostMapping
-    public ResponseResult<Channel> joinChannel(){
+    @ResponseBody
+    public ResponseResult<IntermediateChannel> updateChannel() {
+        return null;
+    }
+
+    @PostMapping(value = "/{channel_id}/peers")
+    @ResponseBody
+    public ResponseResult<IntermediateChannel> joinChannel(@RequestBody List<String> peers) {
+        return null;
+    }
+
+    @RequestMapping(value = "/{channel_id}/peers")
+    @ResponseBody
+    public ResponseResult<Object> listChannelPeers(@PathVariable("channel_id") String channel_id) {
         return null;
     }
 

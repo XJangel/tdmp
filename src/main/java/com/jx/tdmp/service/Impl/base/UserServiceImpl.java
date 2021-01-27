@@ -3,7 +3,7 @@ package com.jx.tdmp.service.Impl.base;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jx.tdmp.entity.User;
 import com.jx.tdmp.mapper.UserMapper;
-import com.jx.tdmp.service.UserService;
+import com.jx.tdmp.service.Interface.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

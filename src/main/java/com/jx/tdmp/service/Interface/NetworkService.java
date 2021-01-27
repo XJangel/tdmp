@@ -1,4 +1,4 @@
-package com.jx.tdmp.service;
+package com.jx.tdmp.service.Interface;
 
 import com.jx.tdmp.entity.Network;
 import com.baomidou.mybatisplus.extension.service.IService;

@@ -4,7 +4,7 @@ import com.jx.tdmp.common.lang.ResponseResult;
 import com.jx.tdmp.constant.ResultCode;
 import com.jx.tdmp.entity.User;
 import com.jx.tdmp.exception.UserException;
-import com.jx.tdmp.service.UserService;
+import com.jx.tdmp.service.Interface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

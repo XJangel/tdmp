@@ -3,7 +3,7 @@ package com.jx.tdmp.controller;
 
 import com.jx.tdmp.common.lang.ResponseResult;
 import com.jx.tdmp.entity.Network;
-import com.jx.tdmp.service.NetworkService;
+import com.jx.tdmp.service.Interface.NetworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

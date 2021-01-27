@@ -2,7 +2,7 @@ package com.jx.tdmp.security;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.jx.tdmp.entity.User;
-import com.jx.tdmp.service.UserService;
+import com.jx.tdmp.service.Interface.UserService;
 import com.jx.tdmp.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
